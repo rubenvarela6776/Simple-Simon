@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Simon</title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="../CSS/Simple-Simon.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+    <h1 id="mainHeader">Simple Simon</h1>
+    </div>
+    <div class="row">
+        <div id="red" class="square col-sm-6"></div>
+        <div id="green" class="square col-sm-6"></div>
+    </div>
+    <div class="row">
+        <div id="blue" class="square col-sm-6"></div>
+        <div id="yellow" class="square col-sm-6"></div>
+    </div>
+    <div class="row">
+        <button id="playButton">Play</button>
+    </div>
+    <div id="roundCounter">
+        <h1 id="roundCounterHeader"></h1>
+    </div>
+    <div id="highScoreDiv">
+        <h1 id="highScoreHeader">High Score:</h1>
+        <h1 id="highScore"></h1>
+    </div>
+    <div class="gameOverDiv">
+        <h1 id="gameOverHeader">Game Over</h1>
+        <button id="gameOverButton">Play Again</button>
+    </div>
+    <audio src="../img/explosion.mp3" id="explosionAudio"></audio>
+    <audio src="../img/blop.mp3" id="clickAudio"></audio>
+    <audio src="../img/tick.mp3" id="sequenceAudio"></audio>
+</div>
+<script src="../js/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="../js/Simple-Simon.js"></script>
+</body>
+</html>
