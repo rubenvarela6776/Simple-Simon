@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- saved from url=(0110)http://localhost:63342/codeup-web-exercices/html_projects/google_maps_api.html?_ijt=rs7o644rk4hkmf0vcb19t646r4 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">.gm-style{font-family:Roboto,Arial,sans-serif;font-size:11px;font-weight:400;text-decoration:none}.gm-style img{max-width:none}</style>
+    
+    <title>Google Maps API</title>
+    <style type="text/css">
+        #map-canvas {
+            width: 1425px;
+            height: 650px;
+        }
+        #infoWindowDiv {
+            height: 200px;
+        }
+        #infoWindowHeader {
+            font-family: 'Open Sans Condensed', sans-serif;
+            font-size: 21px;
+            font-weight: 400;
+            text-align: center;
+            padding: 10px;
+            background-color: tan;
+            color: white;
+            margin: 1px;
+            border-radius: 3px;
+        }
+        #chama_logo {
+            margin-top: 15px;
+            width: 25%;
+            height: 120px;
+            float: right;
+
+        }
+        #history_header {
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+        #history_paragraph {
+            font-size: 15px;
+            margin-top: 10px;
+        }
+    </style>
+<script type="text/javascript" charset="UTF-8" src="./Google Maps API_files/common.js"></script><script type="text/javascript" charset="UTF-8" src="./Google Maps API_files/map.js"></script><script type="text/javascript" charset="UTF-8" src="./Google Maps API_files/util.js"></script><script type="text/javascript" charset="UTF-8" src="./Google Maps API_files/geocoder.js"></script><script type="text/javascript" charset="UTF-8" src="./Google Maps API_files/marker.js"></script><script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script><script type="text/javascript" charset="UTF-8" src="./Google Maps API_files/onion.js"></script><script type="text/javascript" charset="UTF-8" src="./Google Maps API_files/AuthenticationService.Authenticate"></script><script type="text/javascript" charset="UTF-8" src="./Google Maps API_files/GeocodeService.Search"></script><script type="text/javascript" charset="UTF-8" src="./Google Maps API_files/infowindow.js"></script></head>
+
+<body>
+<!-- div to hold map -->
+<div id="map-canvas" style="position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; background-color: rgb(229, 227, 223);"><div class="gm-style" style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;"><div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default;"><div style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit; display: block;"></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit; display: block;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 2; width: 100%; height: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 3; width: 100%; height: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 4; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div></div></div></div></div></div>
+
+<!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
+<script src="./Google Maps API_files/js"></script>
+
+<!-- Script to show address on map -->
+<script type="text/javascript">
+
+    (function() {
+        "use strict";
+
+//---------------------------------------------------------------------------------//
+
+        var mapOptions = {
+            zoom: 11
+        };
+
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        var address = "18318 Sonterra Pl, San Antonio, TX 78258";
+
+        var geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode({ "address": address }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter.LatLng(results[0].geometry.location);
+            } else {
+                alert("Geocoding was not successful - STATUS: " + status);
+            }
+        });
+
+//---------------------------------------------------------------------------------//
+
+        var contentString = "<div id='infoWindowDiv'>" +
+                "<h2 id='infoWindowHeader'>Chama Gaúcha Brazilian Steakhouse</h2>" +
+                "<img src='../img/chama_gaucha_logo.jpeg' id='chama_logo'>" +
+                "<div id='contentDiv'>" +
+                "<h3 id='history_header'>History</h3>" +
+                "<p id='history_paragraph'>Opening his first location in San Antonio, owner, João Carlos Ongaratto, has paved the way for world-class dining service and experience in southern Texas.  Bringing the tradition and hospitality of Southern Brazil, the owner’s birthplace, and combining the diversity of San Antonio, Chama Gaucha has become a landmark in fine dining with the flair and quality of the churrascaria. Honing his skills for the last 22 years in the Brazilian Steakhouse style of restaurant, João set about creating the same atmosphere and service.  With the success of San Antonio, the second location in Chicago opened in 2009 with Houston and Atlanta following shortly after. Come join us for a taste of Passion Inspired Flavor!</p>" +
+                "</div>" +
+                "</div>";
+
+        var contentStringTwo = "<div>" +
+                "<h2>In-N-Out</h2>" +
+                "</div>";
+
+        var contentStringThree = "<div>" +
+                "<h2>Taquitos West Avenue</h2>" +
+                "</div>";
+
+//---------------------------------------------------------------------------------//
+
+        var locations = [
+            [contentString, 29.610265,-98.497740],
+            [contentStringTwo, 29.493509,-98.709627],
+            [contentStringThree, 29.486602,-98.525599]
+        ];
+
+        var marker;
+        var i;
+
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map,
+                animation: google.maps.Animation.DROP
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+
+        }
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString,
+            maxWidth: 400
+        });
+
+//---------------------------------------------------------------------------------//
+
+
+    })();
+</script>
+<div style="position: absolute; left: 0px; top: -2px; height: 1px; overflow: hidden; visibility: hidden; width: 1px;"><span style="position: absolute; font-size: 300px; width: auto; height: auto; margin: 0px; padding: 0px; font-family: Roboto, Arial, sans-serif;">BESbswy</span></div></body></html>
